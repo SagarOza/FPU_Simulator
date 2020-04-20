@@ -20,7 +20,7 @@ fp::fp(int i3e_fp_3, int i3e_fp_2, int i3e_fp_1, int i3e_fp_0, int p_sel){
 	}else if( p_sel==1 ){
 		bit_c=16;
 	}else if( p_sel==2 ){
-		bit_c=32;
+		bit_c=32;		
 	}else if( p_sel==3 ){
 		bit_c=64;
 	}else{
@@ -64,8 +64,6 @@ fp::fp(int i3e_fp_3, int i3e_fp_2, int i3e_fp_1, int i3e_fp_0, int p_sel){
 		buf = new_buf | (buf << 1);
 	}
 
-	cout << endl;
-
 	fpoint = buf;
 	sign = ( ( fpoint & ( 1 << (bit_c - 1) ) ) >> bit_c - 1 );
 	exp = (fpoint & ((2047 >> 3*(3-p_sel)) << (bit_c - (6 + 3*(p_sel - 1))))) >> (bit_c - (6 + 3*(p_sel-1)));
@@ -98,8 +96,8 @@ int fp::get_ubias(){
 void fp::fp_burp(){
 	cout << "sign	:" << dec << sign << endl;
 	cout << "exp	:" << dec << exp << endl;
-	cout << "ubias	:" << dec <<ubias << endl;
 	cout << "manti	:" << hex << manti << endl;
+	cout << "ubias	:" << dec <<ubias << endl;
 }
 
 void fp::set_sign(unsigned int s){
